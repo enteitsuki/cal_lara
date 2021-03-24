@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/holiday', 'CalendarController@getHoliday');
+Route::post('/holiday', 'CalendarController@postHoliday');
+Route::get('/holiday/{id}', 'CalendarController@getHolidayId');
+Route::delete('/holiday', 'CalendarController@deleteHoliday');
+
+Route::get('/', 'CalendarController@index');
